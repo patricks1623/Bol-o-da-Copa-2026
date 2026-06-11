@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+:root {
+  /* Default Theme (Neon Purple/Lime - current) */
+  --c-slate-50:  #fdfbff;
+  --c-slate-100: #f8f2ff;
+  --c-slate-200: #f0e6ff;
+  --c-slate-300: #d6b3ff;
+  --c-slate-400: #b880ff;
+  --c-slate-500: #9a4dff;
+  --c-slate-600: #8633ff;
+  --c-slate-700: #6f05ff;
+  --c-slate-800: #5D04D9;
+  --c-slate-900: #2e026c;
+  --c-slate-950: #1a013d;
+
+  --c-emerald-300: #d4f75c;
+  --c-emerald-400: #BFF205;
+  --c-emerald-500: #9cb804;
+  --c-emerald-600: #7b9103;
+}
+
+.theme-classic {
+  --c-slate-50:  #f8fafc;
+  --c-slate-100: #f1f5f9;
+  --c-slate-200: #e2e8f0;
+  --c-slate-300: #cbd5e1;
+  --c-slate-400: #94a3b8;
+  --c-slate-500: #64748b;
+  --c-slate-600: #475569;
+  --c-slate-700: #334155;
+  --c-slate-800: #1e293b;
+  --c-slate-900: #0f172a;
+  --c-slate-950: #020617;
+
+  --c-emerald-300: #6ee7b7;
+  --c-emerald-400: #34d399;
+  --c-emerald-500: #10b981;
+  --c-emerald-600: #059669;
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-emerald-300: var(--c-emerald-300);
+  --color-emerald-400: var(--c-emerald-400); 
+  --color-emerald-500: var(--c-emerald-500);
+  --color-emerald-600: var(--c-emerald-600);
+
+  --color-slate-950: var(--c-slate-950); 
+  --color-slate-900: var(--c-slate-900); 
+  --color-slate-800: var(--c-slate-800); 
+  --color-slate-700: var(--c-slate-700);
+  --color-slate-600: var(--c-slate-600);
+  --color-slate-500: var(--c-slate-500);
+  --color-slate-400: var(--c-slate-400);
+  --color-slate-300: var(--c-slate-300);
+  --color-slate-200: var(--c-slate-200);
+  --color-slate-100: var(--c-slate-100);
+  --color-slate-50: var(--c-slate-50);
+
+  --color-red-400: #ff3333;
+  --color-red-500: #D90404; 
+  --color-red-600: #a60303;
+}
+
+body {
+  @apply bg-slate-950 text-slate-100 antialiased;
+}

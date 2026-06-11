@@ -1,0 +1,6 @@
+{
+  "name": "Bolão da Copa 2026",
+  "description": "Aplicativo de palpites para a Copa do Mundo com grupos de amigos, leaderboard em tempo real e painel de admin.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

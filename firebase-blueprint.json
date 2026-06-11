@@ -1,0 +1,78 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile inside a group.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    },
+    "Group": {
+      "title": "Group",
+      "description": "A group of users.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "name": { "type": "string" },
+        "adminId": { "type": "string" },
+        "members": { 
+          "type": "array",
+          "items": { "$ref": "User" }
+        }
+      },
+      "required": ["id", "code", "name", "adminId", "members"]
+    },
+    "Match": {
+      "title": "Match",
+      "description": "A football match.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "phase": { "type": "string" },
+        "groupName": { "type": "string" },
+        "teamA": { "type": "string" },
+        "teamAFlagCode": { "type": "string" },
+        "teamB": { "type": "string" },
+        "teamBFlagCode": { "type": "string" },
+        "date": { "type": "string" },
+        "realScoreA": { "type": "number" },
+        "realScoreB": { "type": "number" },
+        "status": { "type": "string", "enum": ["pending", "locked", "finished"] }
+      },
+      "required": ["id", "phase", "teamA", "teamB", "date", "status"]
+    },
+    "Prediction": {
+      "title": "Prediction",
+      "description": "A user's prediction for a match.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "matchId": { "type": "string" },
+        "userId": { "type": "string" },
+        "groupId": { "type": "string" },
+        "scoreA": { "type": "number" },
+        "scoreB": { "type": "number" },
+        "points": { "type": "number" }
+      },
+      "required": ["id", "matchId", "userId", "groupId", "scoreA", "scoreB"]
+    }
+  },
+  "firestore": {
+    "/groups/{groupId}": {
+      "schema": "Group",
+      "description": "Groups of users"
+    },
+    "/matches/{matchId}": {
+      "schema": "Match",
+      "description": "Matches in the tournament"
+    },
+    "/predictions/{predictionId}": {
+      "schema": "Prediction",
+      "description": "User predictions"
+    }
+  }
+}

@@ -24,9 +24,9 @@ export default function App() {
     let unsubMatches: (() => void) | undefined;
     let unsubGroup: (() => void) | undefined;
 
-    // Usamos sessionStorage para permitir login de usuários diferentes em abas diferentes do mesmo navegador
-    const savedUser = sessionStorage.getItem('bolao_user');
-    const savedGroup = sessionStorage.getItem('bolao_group');
+    // Usamos localStorage para manter a sessão, permitindo que a progressão não se perca ao fechar o site
+    const savedUser = localStorage.getItem('bolao_user');
+    const savedGroup = localStorage.getItem('bolao_group');
     if (savedUser && savedGroup) {
       const u = JSON.parse(savedUser);
       const g = JSON.parse(savedGroup);
@@ -48,7 +48,7 @@ export default function App() {
     if (!group) return;
     const unsubGroup = dbService.listenGroup(group.id, (updatedGroup) => {
       setGroup(updatedGroup);
-      sessionStorage.setItem('bolao_group', JSON.stringify(updatedGroup));
+      localStorage.setItem('bolao_group', JSON.stringify(updatedGroup));
     });
     return () => unsubGroup();
   }, [group?.id]);
@@ -84,15 +84,15 @@ export default function App() {
   const handleLogin = (newUser: User, newGroup: Group) => {
     setUser(newUser);
     setGroup(newGroup);
-    sessionStorage.setItem('bolao_user', JSON.stringify(newUser));
-    sessionStorage.setItem('bolao_group', JSON.stringify(newGroup));
+    localStorage.setItem('bolao_user', JSON.stringify(newUser));
+    localStorage.setItem('bolao_group', JSON.stringify(newGroup));
   };
 
   const handleLogout = () => {
     setUser(null);
     setGroup(null);
-    sessionStorage.removeItem('bolao_user');
-    sessionStorage.removeItem('bolao_group');
+    localStorage.removeItem('bolao_user');
+    localStorage.removeItem('bolao_group');
     setActiveTab('predictions');
   };
 
@@ -104,7 +104,7 @@ export default function App() {
     
     const updatedUser = { ...user, theme: nextTheme };
     setUser(updatedUser);
-    sessionStorage.setItem('bolao_user', JSON.stringify(updatedUser));
+    localStorage.setItem('bolao_user', JSON.stringify(updatedUser));
     
     try {
       await dbService.updateUserProfile(group.id, updatedUser);
@@ -146,7 +146,7 @@ export default function App() {
       {activeTab === 'profile' && (
         <ProfileTab user={user} group={group} matches={matches} onUserUpdate={(u) => {
           setUser(u);
-          sessionStorage.setItem('bolao_user', JSON.stringify(u));
+          localStorage.setItem('bolao_user', JSON.stringify(u));
         }} />
       )}
       {activeTab === 'groups' && (
@@ -155,7 +155,7 @@ export default function App() {
           currentGroup={group} 
           onGroupSelect={(g) => {
             setGroup(g);
-            sessionStorage.setItem('bolao_group', JSON.stringify(g));
+            localStorage.setItem('bolao_group', JSON.stringify(g));
             setActiveTab('predictions');
           }} 
         />
